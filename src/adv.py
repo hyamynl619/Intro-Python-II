@@ -9,7 +9,7 @@ import os
 
 room = {
     'outside':  Room("Outside Cave Entrance",
-                    
+
                      "North of you, the cave mount beckons"),
 
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
@@ -36,7 +36,7 @@ item = {
     'sword': Item("sword", "A sword comes with many enemies"),
     'gold': Item("gold", "You're rich!")
 
-    
+
 }
 
 # Link rooms together
@@ -50,13 +50,12 @@ room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
 
-#Storing items in rooms for player
+# Storing items in rooms for player
 room['outside'].contents = [item['stick'], item['rock'], item['torch']]
-room['foyer'].contents= [item['water']]
+room['foyer'].contents = [item['water']]
 room['overlook'].contents = [item['knife']]
 room['narrow'].contents = [item['sword']]
 room['treasure'].contents = [item['gold']]
-
 
 
 #
@@ -87,18 +86,18 @@ print(f"Shall we enter the cave?")
 print('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~')
 
 
-
 def choose_item(player, item_name):
     try:
         if item[item_name] in player.current_room.contents:
             player.inventory.append(item[item_name])
             player.current_room.contents.remove(item[item_name])
             print(item[item_name].on_take())
-        
+
         else:
             print(f"There's no items here")
     except:
         print(f"'{item_name}' is not a valid item")
+
 
 def drop_item(player, item_name):
     try:
@@ -106,11 +105,12 @@ def drop_item(player, item_name):
             player.current_room.contentsappend(item[item_name])
             player.inventory.remove(item[item_name])
             print(item[item_name].on_drop())
-        
+
         else:
             print(f"This '{item_name}'' is not in your inventory")
     except:
         print(f"'{item_name}' is not a valid item")
+
 
 ### Title Screen ###
 while True:
@@ -137,19 +137,19 @@ while True:
             if len(player.current_room.contents) == 0:
                 print(f"This room is empty")
             else:
-                print(f"{player.current_room.name} contains {player.current_room.contents}")
+                print(
+                    f"{player.current_room.name} contains {player.current_room.contents}")
         elif user_choice == "a":
-            print(f"\n{player.name} added {player.current_room.contents} to inventory")
+            print(
+                f"\n{player.name} added {player.current_room.contents} to inventory")
             if len(player.current_room.contents) == 0:
                 print(f"This room is empty")
         elif user_choice == 'd':
             print(f"\n{player.name} dropped {player.current_room.contents}")
         elif user_choice == 'p':
             print(f"\n{player.name} attacked!")
-        
-        
 
-        #Movements
+        # Movements
         elif user_choice == 'n':
             if player.current_room.n_to:
                 player.current_room = player.current_room.n_to
@@ -194,13 +194,3 @@ while True:
             print('# -[h] = help menu   - #')
         else:
             print(f"\n - {user_choice} can not be used.\n - Try help command")
-
-
-        
-
-
-        
-        
-
-        
-
