@@ -62,19 +62,6 @@ room['treasure'].contents = [item['gold']]
 # Main
 #
 
-# Make a new player object that is currently in the 'outside' room.
-
-# Write a loop that:
-#
-# * Prints the current room name
-# * Prints the current description (the textwrap module might be useful here).
-# * Waits for user input and decides what to do.
-#
-# If the user enters a cardinal direction, attempt to move to the room there.
-# Print an error message if the movement isn't allowed.
-#
-# If the user enters "q", quit the game.
-
 
 ### Player Setup ###
 new_player = input('What is your name?')
@@ -85,7 +72,7 @@ print(f"{player.name}, Welcome to your first adventure!")
 print(f"Shall we enter the cave?")
 print('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~')
 
-
+#this is to help player choose items and view it per room
 def choose_item(player, item_name):
     try:
         if item[item_name] in player.current_room.contents:
@@ -112,7 +99,7 @@ def drop_item(player, item_name):
         print(f"'{item_name}' is not a valid item")
 
 
-### Title Screen ###
+### Game Loop with commands ###
 while True:
     print('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~')
     print(f"\n{player.name} is currently in the {player.current_room.name}")
@@ -170,7 +157,7 @@ while True:
                 player.current_room = player.current_room.w_to
             else:
                 print(f"\n - Can't go here")
-
+##Help menu setup ###
         elif user_choice == 'help':
             print('########################')
             print('### Let me help you! ###')
